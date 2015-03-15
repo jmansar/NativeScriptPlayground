@@ -1,0 +1,24 @@
+<Page loaded="load">
+    <GridLayout rows="auto, *" cssClass="mainContainer">
+        <GridLayout orientation="horizontal" row="0" columns="*,*,auto" cssClass="addContainer" horizontalAlignment="stretch">
+            <TextField id="newItemName" text="{{ name }}" hint="name" col="0"/>
+            <TextField id="newItemValue" text="{{ value }}" hint="value" col="1"/>
+            <Button text="Add" tap="add" col="2"></Button>
+        </GridLayout>
+        <ListView items="{{ items }}" row="1">
+            <ListView.itemTemplate>
+                <GridLayout columns="50px,*,*,auto" cssClass="itemContainer" >
+                   <Label col="0" text="{{ '#' + id }}" cssClass="itemId" />
+                   <Label col="1" text="{{ name }}" cssClass="itemName"/>
+                    <!-- INVESTIGATE: Keyboard is not opening on Android -->
+                   <TextField col="2" text="{{ value }}"></TextField>
+                    <!-- INVESTIGATE: tap="{{ remove }}" causes the remove method to be invoked on the parent VM (bindingContext) not current item model.
+                        How to assign event handler to call method on current item or how to pass the current item to the handler function?
+                     -->
+                   <Button col="3" cssClass="deleteButton" text="Delete" tap="{{ remove }}">
+                    </Button>
+                </GridLayout>
+            </ListView.itemTemplate>
+         </ListView>
+    </GridLayout>
+</Page>
